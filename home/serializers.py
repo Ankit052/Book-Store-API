@@ -34,3 +34,9 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta :
         model = Order
         fields =  ["ordered_by","book","ordered_date"]
+
+    def to_representation(self, instance):
+        data = super(OrderSerializer, self).to_representation(instance)
+        data["ordered_by"]=UserSerializer(instance.ordered_by).data
+        data["book"]=BookSerializer(instance.book.all(), many=True).data
+        return data
