@@ -21,3 +21,7 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ["ordered_by","get_books","ordered_date"]
+
+
+# admin.site.register(Order)
+# admin.site.register(Book)

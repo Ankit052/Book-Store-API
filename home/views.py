@@ -2,6 +2,7 @@ from .models import *
 from .serializers import *
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
+from django.db.models import Count
 
 # Create your views here.
 
@@ -16,9 +17,11 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
+
     serializer_class = BookSerializer
     filter_backends = [SearchFilter]
-    search_fields = ['name']
+    search_fields = ['name', 'category__name']
+    
     
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer

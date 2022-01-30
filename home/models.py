@@ -30,7 +30,7 @@ class Book(models.Model):
     name = models.CharField(max_length=200)
     author_name = models.CharField(max_length=100)
     category = models.ForeignKey(Category,on_delete= models.CASCADE,related_name="book_list")
-    publish_date = models.DateField(auto_now_add= False )
+    publish_date = models.DateField(auto_now_add= False ,null = True,blank=True)
     price = models.DecimalField( max_digits=5, decimal_places=2)
     created_date = models.DateField(auto_now_add=False ,null = True,blank=True)
 
@@ -49,6 +49,6 @@ class Order(models.Model):
         return str(self.ordered_by)
 
     def get_books(self):
-        return "\n".join([p for p in self.book.all()])    
+        return ",".join([str(p) for p in self.book.all()])    
 
 
