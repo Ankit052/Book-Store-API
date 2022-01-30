@@ -3,14 +3,12 @@ from rest_framework import serializers
 from .models import *
 
 class UserSerializer(serializers.ModelSerializer):
-    # order = serializers.StringRelatedField(many= True,read_only = True )
     class Meta :
         model = User
         fields = ["id","user_name","age","city","phone_number","email","created_date"]
          
 
 class CategorySerializer(serializers.ModelSerializer):
-    # book_list = serializers.StringRelatedField(many=True, read_only =True)
     class Meta :
         model = Category
         fields =  ["id","name","created_date"]
@@ -18,7 +16,6 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class BookSerializer(serializers.ModelSerializer):
-    # category = CategorySerializer()
     class Meta :
         model = Book
         fields =  ["id","name","author_name","category","publish_date","price","created_date"]
